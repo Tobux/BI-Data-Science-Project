@@ -1,4 +1,5 @@
 # BI Data Science Project
+**Heart Forecast – Using Machine Learning Models to Predict Cardiovascular Events**
 
 Cardiovascular diseases (CVDs) are the leading cause of death globally, affecting millions each year and placing a huge burden on healthcare systems. In our project, we dive into the world of data science to tackle this issue, using predictive modeling to identify early indicators of heart disease. By analyzing data from the [Framingham Heart Study](https://www.kaggle.com/datasets/dileep070/heart-disease-prediction-using-logistic-regression/data), we aim to develop a model that predicts the risk of developing heart disease based on various factors like age, cholesterol levels, and smoking status. This project not only gives us a chance to apply what we've learned in class about machine learning but also helps us understand how such technologies can be used in real-world healthcare scenarios to save lives by predicting and preventing heart diseases before they become fatal.
 
