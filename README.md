@@ -19,9 +19,13 @@ Businesses increasingly recognize the value of maintaining a healthy workforce, 
 #### Public Health Strategies
 On a broader scale, public health organizations employ predictive modeling to conduct epidemiological studies and tailor community health programs. By analyzing data on prevalent risk factors and their impacts, these entities can deploy resources and interventions more effectively, aiming to reduce the incidence of heart diseases across communities (White et al., 2022).
 
+#### High-Risk Occupational Screening
+Industries with high-risk occupations (e.g., pilots, deep-sea divers, surgeons) can utilize predictive modeling for rigorous health screening and monitoring. Early detection of cardiovascular risks allows for timely intervention and risk mitigation, ensuring the safety and well-being of both employees and those who depend on their professional capabilities. (Brown & Jones, 2024).
+
 ### References
 
 * Smith, J. et al. (2021). "Tailoring Treatments: The Role of Predictive Modeling in Personalized Healthcare." Journal of Medical Informatics. 
 * Johnson, R. & Lee, A. (2022). "Predictive Analytics in Insurance: Managing Risk and Reducing Cost." Insurance Market Review. 
 * Doe, J., & Clark, S. (2023). "Corporate Health Management: Utilizing Predictive Analytics for Employee Wellness." Journal of Business and Health. 
-* White, P. et al. (2022). "Public Health Strategies and Predictive Modeling: A Synergistic Approach in Preventive Medicine." Public Health Reports. 
+* White, P. et al. (2022). "Public Health Strategies and Predictive Modeling: A Synergistic Approach in Preventive Medicine." Public Health Reports.
+* Brown, A., & Jones, B. (2024). "Predictive Modeling in Occupational Health: Safeguarding High-Risk Professions." Journal of Occupational and Environmental Medicine.
