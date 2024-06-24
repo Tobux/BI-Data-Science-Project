@@ -11,7 +11,7 @@ except FileNotFoundError:
     st.stop()
 
 try:
-    with open('models/undersampling/Logistic Regression_model.pkl', 'rb') as file:
+    with open('models/undersampling/Logistic Regression_pipeline.pkl', 'rb') as file:
         model = pickle.load(file)
 except FileNotFoundError:
     st.error("Model pickle file not found. Please ensure 'model.pkl' is in the same directory as the app.")
@@ -25,28 +25,28 @@ def predict(data):
     st.write("Input data:")
     st.dataframe(data)
 
-    # Apply the preprocessing pipeline
-    preprocessed_data = preprocessor.transform(data)
+    # # Apply the preprocessing pipeline
+    # preprocessed_data = preprocessor.transform(data)
 
-    # Get feature names for numerical features directly
-    numerical_features = ['age', 'cigsPerDay', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose']
+    # # Get feature names for numerical features directly
+    # numerical_features = ['age', 'cigsPerDay', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose']
 
-    # Get feature names from OneHotEncoder for categorical features
-    categorical_features = ['male', 'education', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes']
-    categorical_feature_names = list(preprocessor.named_transformers_['cat']['onehot'].get_feature_names_out(categorical_features))
+    # # Get feature names from OneHotEncoder for categorical features
+    # categorical_features = ['male', 'education', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes']
+    # categorical_feature_names = list(preprocessor.named_transformers_['cat']['onehot'].get_feature_names_out(categorical_features))
 
-    # Combine all feature names
-    feature_names = numerical_features + categorical_feature_names
+    # # Combine all feature names
+    # feature_names = numerical_features + categorical_feature_names
 
-    # Create a DataFrame with the processed data and new feature names
-    preprocessed_data_df = pd.DataFrame(preprocessed_data, columns=feature_names)
+    # # Create a DataFrame with the processed data and new feature names
+    # preprocessed_data_df = pd.DataFrame(preprocessed_data, columns=feature_names)
 
-    # Optionally, display the preprocessed data with named columns
-    st.write("Preprocessed data:")
-    st.dataframe(preprocessed_data_df)
+    # # Optionally, display the preprocessed data with named columns
+    # st.write("Preprocessed data:")
+    # st.dataframe(preprocessed_data_df)
 
     # Make a prediction
-    return model.predict_proba(preprocessed_data_df)[:, 1]  # Assuming the model returns probabilities
+    return model.predict_proba(data)[:, 1]  # Assuming the model returns probabilities
 
 
 # Title of the application
