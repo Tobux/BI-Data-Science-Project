@@ -17,22 +17,34 @@ except FileNotFoundError:
     st.error("Model pickle file not found. Please ensure 'model.pkl' is in the same directory as the app.")
     st.stop()
 
+import streamlit as st
+import pandas as pd
+
 def predict(data):
-
-    # Define preprocessing for numerical columns (imputation + scaling)
-    numerical_features = ['age', 'cigsPerDay', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose']
-    # Define preprocessing for categorical columns (imputation + one-hot encoding)
-    categorical_features = ['male', 'education', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes']
-
-    preprocessed_data = preprocessor.transform(data)
-
+    # Display the original input data
+    st.write("Input data:")
     st.dataframe(data)
 
+    # Apply the preprocessing pipeline
+    preprocessed_data = preprocessor.transform(data)
 
-    feature_names = numerical_features + list(preprocessor.named_transformers_['cat']['onehot'].get_feature_names_out(categorical_features))
+    # Get feature names for numerical features directly
+    numerical_features = ['age', 'cigsPerDay', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose']
+
+    # Get feature names from OneHotEncoder for categorical features
+    categorical_features = ['male', 'education', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes']
+    categorical_feature_names = list(preprocessor.named_transformers_['cat']['onehot'].get_feature_names_out(categorical_features))
+
+    # Combine all feature names
+    feature_names = numerical_features + categorical_feature_names
+
+    # Create a DataFrame with the processed data and new feature names
     preprocessed_data_df = pd.DataFrame(preprocessed_data, columns=feature_names)
 
+    # Optionally, display the preprocessed data with named columns
+    st.write("Preprocessed data:")
     st.dataframe(preprocessed_data_df)
+
     # Make a prediction
     return model.predict_proba(preprocessed_data_df)[:, 1]  # Assuming the model returns probabilities
 
@@ -63,35 +75,16 @@ with st.form("input_form"):
         # Calculate BMI
         bmi = weight / ((height / 100) ** 2)
         
-        # # Constructing the data dictionary from the inputs
-        # sample_data = {
-        #     'age': age,
-        #     'cigsPerDay': cigs_per_day,
-        #     'totChol': None,
-        #     'sysBP': None,
-        #     'diaBP': None,
-        #     'BMI': bmi,
-        #     'heartRate': None,
-        #     'glucose': None,
-        #     'male': male,
-        #     'education': education,
-        #     'currentSmoker': current_smoker,
-        #     'BPMeds': bp_meds,
-        #     'prevalentStroke': prevalent_stroke,
-        #     'prevalentHyp': prevalent_hyp,
-        #     'diabetes': diabetes
-        # }
-
-                # Constructing the data dictionary from the inputs
+        # Constructing the data dictionary from the inputs
         sample_data = {
             'age': age,
             'cigsPerDay': cigs_per_day,
-            'totChol': 236,
-            'sysBP': 132,
-            'diaBP': 82,
+            'totChol': 236,  # Default or average value if unknown
+            'sysBP': 132,    # Default or average value if unknown
+            'diaBP': 82,     # Default or average value if unknown
             'BMI': bmi,
-            'heartRate': 75,
-            'glucose': 81,
+            'heartRate': 75,  # Default or average value if unknown
+            'glucose': 81,   # Default or average value if unknown
             'male': male,
             'education': education,
             'currentSmoker': current_smoker,
@@ -101,10 +94,13 @@ with st.form("input_form"):
             'diabetes': diabetes
         }
 
+
+
         # Convert the data dictionary to DataFrame
         input_df = pd.DataFrame([sample_data])
 
-        # Calling the predict function (you should replace this with your model's prediction function)
+
+        # Calling the predict function
         prediction_probability = predict(input_df)
 
         # Display the prediction result
