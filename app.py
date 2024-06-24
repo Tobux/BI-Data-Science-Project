@@ -66,8 +66,8 @@ with st.form("input_form"):
     cigs_per_day = st.number_input('Cigarettes Per Day', min_value=0, max_value=100, value=10, help='If you smoke, how many cigarettes do you smoke per day?')
     bp_meds = st.radio('On Blood Pressure Medication', options=[1, 0], format_func=lambda x: 'Yes' if x == 1 else 'No', help='Indicate if you are taking medication for blood pressure.')
     prevalent_hyp = st.radio('Hypertensive', options=[1, 0], format_func=lambda x: 'Yes' if x == 1 else 'No', help='Indicate if you have been diagnosed with hypertension (DE: Bluthochdruck).')
-    diabetes = st.radio('Diabetic', options=[0, 1], format_func=lambda x: 'No' if x == 0 else 'Yes', help='Indicate if you have diabetes. Diabetes increases the risk of heart disease.')
-    prevalent_stroke = st.radio('History of Stroke', options=[0, 1], format_func=lambda x: 'No' if x == 0 else 'Yes', help='Indicate if you have had a stroke before. History of stroke can influence your heart disease risk.')
+    diabetes = st.radio('Diabetic', options=[1, 0], format_func=lambda x: 'Yes' if x == 1 else 'No', help='Indicate if you have diabetes. Diabetes increases the risk of heart disease.')
+    prevalent_stroke = st.radio('History of Stroke', options=[1, 0], format_func=lambda x: 'Yes' if x == 1 else 'No', help='Indicate if you have had a stroke before. History of stroke can influence your heart disease risk.')
 
     # Form submission button
     submitted = st.form_submit_button("Submit")
