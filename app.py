@@ -11,7 +11,7 @@ except FileNotFoundError:
     st.stop()
 
 try:
-    with open('model.pkl', 'rb') as file:
+    with open('models/undersampling/Logistic Regression_model.pkl', 'rb') as file:
         model = pickle.load(file)
 except FileNotFoundError:
     st.error("Model pickle file not found. Please ensure 'model.pkl' is in the same directory as the app.")
